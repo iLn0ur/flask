@@ -1,12 +1,17 @@
-from flask import Flask
-from flask import request
+from flask import Flask, render_template, request
+
+from blog.articles.views import articles_app
+from blog.users.views import users_app
 
 app = Flask(__name__)
+app.register_blueprint(users_app, url_prefix="/users")
+
+app.register_blueprint(articles_app, url_prefix="/articles")
 
 
 @app.route("/")
 def index():
-    return "Hello web!"
+    return render_template("users/list.html")
 
 
 @app.route("/greet/<name>/")
