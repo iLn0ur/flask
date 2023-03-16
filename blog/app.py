@@ -46,8 +46,29 @@ def greet_name(name: str):
 - User John Smith
 """
 
+
 @app.route("/user/")
 def read_user():
     name = request.args.get("name")
     surname = request.args.get("surname")
     return f"User {name or '[unknown]'} {surname or '[unknown]'}"
+
+
+@app.cli.command("create-tags")
+def create_tags():
+    """
+    Run in your terminal:
+    ➜ flask create-tags
+    """
+    from blog.models import Tag
+    for name in [
+        "flask",
+        "django",
+        "python",
+        "sqlalchemy",
+        "news",
+    ]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
+    print("created tags")
