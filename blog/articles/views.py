@@ -4,7 +4,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import joinedload
 from werkzeug.exceptions import NotFound
 from blog.models.database import db
-from blog.models import Author, Article
+from blog.models import Author, Article, Tag
 from blog.forms.article import CreateArticleForm
 
 articles_app = Blueprint("articles_app", __name__)
