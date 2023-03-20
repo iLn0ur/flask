@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 
+from blog.admin import admin
 from blog.articles.views import articles_app
 from blog.auth.views import auth_app, login_manager
 from blog.models.database import db
@@ -72,3 +73,6 @@ def create_tags():
         db.session.add(tag)
     db.session.commit()
     print("created tags")
+
+
+admin.init_app(app)
