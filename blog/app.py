@@ -8,11 +8,13 @@ from blog.security import flask_bcrypt
 from blog.users.views import users_app
 import os
 from blog.authors.views import authors_app
+from blog.api import init_api
 
 
 app = Flask(__name__)
 cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
 app.config.from_object(f"blog.configs.{cfg_name}")
+api = init_api(app)
 
 
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////tmp/blog.db"
